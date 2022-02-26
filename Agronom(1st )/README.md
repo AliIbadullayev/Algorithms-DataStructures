@@ -9,25 +9,51 @@ Need to find the place in garden where the count of same flowers is lower than 3
 
 ```c
 #include <stdio.h>
-#include <stdint.h>
+#include <inttypes.h>
 
 int main()
 {
-    int64_t end = 0, start = 1;
-    
+    int64_t start = 1 ;
+    int64_t end = 1;
+
     int count = 0; 
-    n = 6; 
-    int[] a = {1,2,3,3,3,42,2};
-    for (int i = 0; i < n - 1; i++){
-        if (a[i]==a[i+1]) count++;
-        else count = 0;
-        if (count == 2) {
-            end = i;
-            start = i
+    int n;  
+    scanf("%d", &n);
+    int a[n];
+    for(int i=0;i<n;i++)
+        scanf("%d", &a[i]);
+    if (n <= 2) end = n;
+    else {
+        for (int i = 0; i < n - 1; i++){
+            // if same flowers nearby, then count them amount 
+            if (a[i]==a[i+1]) {
+                count++;
+            }
+            
+            else count = 0;
+            // if not good area (more than 2 same flowers)
+            if (count == 2 ) {
+                count = 0;
+                //for first iteration fullfill the end 
+                if (end == 0) end = i+1;
+                // if the amount of previous area is bigger than this then 
+                else if (end - start < i+2 - end) {
+                    start = end;
+                    end = i+1;
+                }
+                i--;
+            }
+            // if the end of garden
+            if (i == n-2) {
+                if (end - start < i + 2 - end) {
+                    start = end ;
+                    end = i+2;
+                }
+            } 
         }
     }
-
+    printf("%" PRId64 " ", start);
+    printf("%" PRId64, end);
     return 0;
 }
-
 ```
