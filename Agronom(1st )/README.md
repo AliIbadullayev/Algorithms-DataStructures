@@ -13,15 +13,22 @@ Need to find the place in garden where the count of same flowers is lower than 3
 
 int main()
 {
+    // start_temp - variable that helps in that situation 
+    // ( n = 5 ; a[i] = {2,2,2,2,2} ; if 5 same elements staying nearby than we need by comparing the first area (1-2) 
+    // and the third area (3-4) we need to know the start of next area and thatswhy we need this variable)
+    int64_t start_temp = 1 ;
     int64_t start = 1 ;
     int64_t end = 1;
-
+     
+    // variable for counting same elements nearby
     int count = 0; 
     int n;  
+    
     scanf("%d", &n);
     int a[n];
     for(int i=0;i<n;i++)
-        scanf("%d", &a[i]);
+        scanf("%d", &a[i]) ;
+    
     if (n <= 2) end = n;
     else {
         for (int i = 0; i < n - 1; i++){
@@ -29,31 +36,29 @@ int main()
             if (a[i]==a[i+1]) {
                 count++;
             }
-            
             else count = 0;
             // if not good area (more than 2 same flowers)
             if (count == 2 ) {
                 count = 0;
-                //for first iteration fullfill the end 
-                if (end == 0) end = i+1;
                 // if the amount of previous area is bigger than this then 
-                else if (end - start < i+2 - end) {
-                    start = end;
+                if (end - start < i+1 - start_temp) {
+                    start = start_temp;
                     end = i+1;
                 }
+                start_temp = i+1;
                 i--;
             }
-            // if the end of garden
-            if (i == n-2) {
-                if (end - start < i + 2 - end) {
-                    start = end ;
+            // if the end of garden 
+            else if (i == n-2) {
+                if (end - start < i+2 - start_temp){
+                    start = start_temp ;
                     end = i+2;
                 }
             } 
         }
     }
     printf("%" PRId64 " ", start);
-    printf("%" PRId64, end);
+    printf("%" PRId64"\n", end);
     return 0;
 }
 ```
