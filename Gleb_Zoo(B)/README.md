@@ -84,18 +84,20 @@ int main()
         n++;
     }
     char result[n/2];
-    
     struct Stack* stack = createStack(n/2);
     
     for(int i = 0 ; i<n; i++){
+        // if (i > 0 && peek(stack) == letters[i]){
+        //     push(stack, letters[i]);
+        //     push_count++;
+        //     continue;
+        // }
      
         if (tolower(peek(stack)) != tolower(letters[i])){
             push(stack, letters[i]);
             push_count++;
             previous_push = 1;
-        }
-    
-        else {
+        } else {
             pop(stack);
             if (previous_push) result[result_count] = push_count;
             else result[result_count] = push_count - pop_count;
@@ -103,8 +105,8 @@ int main()
             previous_push = 0;
             result_count++;
         }
+        if (isEmpty(stack)) pop_count = 0;
     }
-
     
     if(isEmpty(stack)) {
         printf("Possible\n");
@@ -113,8 +115,6 @@ int main()
         }
     }
     else printf("Impossible");
-    
- 
     return 0;
 }
 //ABCaAbBcba 45321
