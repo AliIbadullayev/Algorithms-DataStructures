@@ -10,11 +10,113 @@
 ## Решение
 Решать буду используя структуру данных стек (Первый вошел, последний вышел). Пушаю элементы если элемент вершины стека не схожи со следующим (не та буква), вытаскиваю в ином случае. 
 ```c
+#include <limits.h>
 #include <stdio.h>
-#include <inttypes.h>
+#include <stdlib.h>
+#include <ctype.h>
 
+struct Stack {
+    int top;
+    unsigned capacity;
+    int* array;
+};
+ 
+// function to create a stack of given capacity. It initializes size of
+// stack as 0
+struct Stack* createStack(unsigned capacity)
+{
+    struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
+    stack->capacity = capacity;
+    stack->top = -1;
+    stack->array = (int*)malloc(stack->capacity * sizeof(int));
+    return stack;
+}
+ 
+// Stack is full when top is equal to the last index
+int isFull(struct Stack* stack)
+{
+    return stack->top == stack->capacity - 1;
+}
+ 
+// Stack is empty when top is equal to -1
+int isEmpty(struct Stack* stack)
+{
+    return stack->top == -1;
+}
+ 
+// Function to add an item to stack.  It increases top by 1
+void push(struct Stack* stack, int item)
+{
+    if (isFull(stack))
+        return;
+    stack->array[++stack->top] = item;
+}
+ 
+// Function to remove an item from stack.  It decreases top by 1
+int pop(struct Stack* stack)
+{
+    if (isEmpty(stack))
+        return INT_MIN;
+    return stack->array[stack->top--];
+}
+ 
+// Function to return the top from stack without removing it
+int peek(struct Stack* stack)
+{
+    if (isEmpty(stack))
+        return INT_MIN;
+    return stack->array[stack->top];
+}
+
+
+ 
+// Driver program to test above functions
 int main()
 {
+    char letters[100000];
+    scanf("%s", letters);
+    int n = 0;
+    int push_count = 0;
+    int pop_count = 0;
+    int previous_push = 0;
+    int result_count = 0;
+    while (letters[n] != '\0'){ 
+        n++;
+    }
+    char result[n/2];
     
+    struct Stack* stack = createStack(n/2);
+    
+    for(int i = 0 ; i<n; i++){
+     
+        if (tolower(peek(stack)) != tolower(letters[i])){
+            push(stack, letters[i]);
+            push_count++;
+            previous_push = 1;
+        }
+    
+        else {
+            pop(stack);
+            if (previous_push) result[result_count] = push_count;
+            else result[result_count] = push_count - pop_count;
+            pop_count ++;
+            previous_push = 0;
+            result_count++;
+        }
+    }
+
+    
+    if(isEmpty(stack)) {
+        printf("Possible\n");
+        for(int i = 0 ; i<n/2; i++){
+            printf("%d ", result[i]);
+        }
+    }
+    else printf("Impossible");
+    
+ 
+    return 0;
 }
+//ABCaAbBcba 45321
+//cAbBabBaAC 32451
 ```
