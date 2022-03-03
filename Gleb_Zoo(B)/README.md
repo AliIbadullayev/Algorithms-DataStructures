@@ -18,7 +18,7 @@
 struct Stack {
     int top;
     unsigned capacity;
-    int* array;
+    char* array;
 };
  
 // function to create a stack of given capacity. It initializes size of
@@ -28,7 +28,7 @@ struct Stack* createStack(unsigned capacity)
     struct Stack* stack = (struct Stack*)malloc(sizeof(struct Stack));
     stack->capacity = capacity;
     stack->top = -1;
-    stack->array = (int*)malloc(stack->capacity * sizeof(int));
+    stack->array = (char*)malloc(stack->capacity * sizeof(int));
     return stack;
 }
  
@@ -45,7 +45,7 @@ int isEmpty(struct Stack* stack)
 }
  
 // Function to add an item to stack.  It increases top by 1
-void push(struct Stack* stack, int item)
+void push(struct Stack* stack, char item)
 {
     if (isFull(stack))
         return;
@@ -83,15 +83,15 @@ int main()
     while (letters[n] != '\0'){ 
         n++;
     }
-    char result[n/2];
+    int result[n/2];
     struct Stack* stack = createStack(n/2);
     
     for(int i = 0 ; i<n; i++){
-        // if (i > 0 && peek(stack) == letters[i]){
-        //     push(stack, letters[i]);
-        //     push_count++;
-        //     continue;
-        // }
+        if (i > 0 && peek(stack) == letters[i]){
+            push(stack, letters[i]);
+            push_count++;
+            continue;
+        }
      
         if (tolower(peek(stack)) != tolower(letters[i])){
             push(stack, letters[i]);
