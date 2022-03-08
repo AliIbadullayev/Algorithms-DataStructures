@@ -23,3 +23,19 @@
 
 ## Решения
 1. Можно ли реализовать при помощи стека? При входе в новый блок новое значение записывается на вершину(push). При выходе из блока (pop) -> сл-но значение в блоке выше забывается.
+```
+a=b			1. Map not contains the variable before and after '=' => Add two variable in map and their value is 0 and output the value
+b=123			2. Map contains the variable before '=' and after '=' is value => Reset the value of this variable 
+var=b			3. Map not contains the variable before '=' and after '=' is variable which is in map => Set the 1st varibale in map with value of 2nd variable and output the value 
+b=-34			
+{
+c=b
+b=1000000000
+d=b
+{
+a=b			4. Map contains the variable before and after '=' => Reset the value of 1st variable with the value of 2nd variable and output the new value 
+e=var
+}
+}
+b=b
+```
