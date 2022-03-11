@@ -1,0 +1,60 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.21"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Professor_Caos_D_",
+					"targetIndexes" : 
+					[
+						0
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Professor_Caos_D_::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Professor_Caos_D_-Debug-8f953df58435a690901f.json",
+					"name" : "Professor_Caos_D_",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Alibaba/Documents/GitHub/Low-level Programming/Algorithms-DataStructures/Professor_Caos(D)/cmake-build-debug",
+		"source" : "C:/Users/Alibaba/Documents/GitHub/Low-level Programming/Algorithms-DataStructures/Professor_Caos(D)"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}
