@@ -3,11 +3,12 @@
 #include <string>
 #include <string_view>
 #include <vector>
+#include <stack>
 
 using namespace std;
 
 // to split the word by '='
-vector<string> split (const string& s, const string& delimiter) {
+vector<string> split (string s, string delimiter) {
     size_t pos_start = 0, pos_end, delim_len = delimiter.length();
     string token;
     vector<string> res;
@@ -33,51 +34,26 @@ bool isNumber(const string& str)
 }
 
 // the brain of my program
-//void func (map<string, int> m){
-//    vector<string> a;
-//    string input;
-//    while(cin>>input){
-//        if (input=="{") func(m);
-//        else if (input=="}") return ;
-//        else {
-//            a = split(input,"=");
-//            string first = a.at(0);
-//            auto second = a.at(1);
-//            if (isNumber(second)) {
-//                m[first]= stoi(second);
-//            } else {
-//                if (m.find(first) == m.end() && m.find(second) == m.end()){
-//                    m[first]=0;
-//                    m[second]=0;
-//                } else m[first]=m[second];
-//                cout << m[first]<<"\n";
-//            }
-//        }
-//    }
-//}
-
-// the head of my program
-int main()
-{
-    map<string, int> m {  };
-    int count =0;
+void func (map<string, int> m){
     vector<string> a;
-    vector<map<string, int>> b;
+    stack<map<string, int>> s;
+    map<string, int> temp;
     string input;
     while(cin>>input){
         if (input=="{") {
-            b.push_back(m);
-            count++;
+            if (s.empty()) {
+                temp = m;
+            }
+            s.push(m);
+
         }
-        else if (input=="}"){
-            count--;
-            if(count ==0){
-                m = b.back();
+        else if (input=="}") {
+            s.pop();
+            if (s.empty()) {
+                m = temp;
+                continue;
             }
-            else {
-                b.pop_back();
-                m = b.back();
-            }
+            m = s.top();
         }
         else {
             a = split(input,"=");
@@ -94,12 +70,12 @@ int main()
             }
         }
     }
-//    vector <int> nums;
-//    nums.push_back(6);
-//    cout << nums.front() << "\n";
-//    cout << nums.back() << "\n";
-//    nums.push_back(7);
-//    cout << nums.front() << "\n";
-//    cout << nums.back() << "\n";
+}
+
+// the head of my program
+int main()
+{
+    map<string, int> m {  };
+    func(m);
     return 0;
 }
