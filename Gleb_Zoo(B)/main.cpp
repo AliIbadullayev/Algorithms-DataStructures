@@ -4,7 +4,7 @@ using namespace std;
 
 
 int main() {
-    char letters[200000];
+    char letters[100001];
     cin >> letters;
 
     int n = 0;
@@ -15,7 +15,7 @@ int main() {
     while (letters[n] != '\0'){
         n++;
     }
-    int result[n/2];
+    int result[n/2+1];
     stack<char> stack;
 
     for(int i = 0 ; i<n; i++){
@@ -57,3 +57,5 @@ int main() {
     else cout << "Impossible";
     return 0;
 }
+
+//aAAAaaaAaA 1 3 2 4 5,

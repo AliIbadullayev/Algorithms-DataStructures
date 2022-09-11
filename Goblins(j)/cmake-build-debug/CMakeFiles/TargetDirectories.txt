@@ -1,0 +1,3 @@
+C:/Users/Alibaba/Documents/GitHub/Low-level Programming/Algorithms-DataStructures/Goblins(j)/cmake-build-debug/CMakeFiles/Goblins_j_.dir
+C:/Users/Alibaba/Documents/GitHub/Low-level Programming/Algorithms-DataStructures/Goblins(j)/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Alibaba/Documents/GitHub/Low-level Programming/Algorithms-DataStructures/Goblins(j)/cmake-build-debug/CMakeFiles/rebuild_cache.dir

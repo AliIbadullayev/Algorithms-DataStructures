@@ -38,22 +38,18 @@ void func (map<string, int> m){
     vector<string> a;
     stack<map<string, int>> s;
     map<string, int> temp;
+    int count = 0;
     string input;
     while(cin>>input){
         if (input=="{") {
-            if (s.empty()) {
-                temp = m;
-            }
             s.push(m);
-
+            count = 0;
         }
         else if (input=="}") {
-            s.pop();
-            if (s.empty()) {
-                m = temp;
-                continue;
-            }
+
             m = s.top();
+            s.pop();
+
         }
         else {
             a = split(input,"=");
@@ -68,6 +64,7 @@ void func (map<string, int> m){
                 } else m[first]=m[second];
                 cout << m[first]<<"\n";
             }
+            count++;
         }
     }
 }
